@@ -1,28 +1,36 @@
 
-print("Calculator for calculating the average of entered numbers!")
+print("Calculator for calculating the average of entered numbers!\n")
 
-# variables
-numbering = 0
-total_entries = 0
 
-# while loop repetition structure until user enters -1
-while True:
-    enter_num = int(input("Enter any number:\n > "))
+def get_int(prompt):
+    while True:
+        try:
+            return int(input(prompt))
+        except ValueError:
+            print("Oops! No number were entered! Try again!")
 
-    # if the user entered -1, the loop will be terminated using the break statement
-    if enter_num == -1:
-        break
 
-    # update variables
-    numbering += 1
-    total_entries += enter_num
+def main():
+    numbering = 0
+    total_entries = 0
 
-# calculating the average, and then a message is printed
-if numbering > 0:
-    average = total_entries / numbering
-    print(
-        f"In total, {numbering} numbers have been entered and the average is {average:.2f}.")
+    while True:
+        user_input = get_int("Enter any number:\n > ")
 
-# if user has not entered any numbers, a message is printed
-else:
-    print("The negative number or no numbers were entered!")
+        if user_input == -1:
+            break
+        numbering += 1
+        total_entries += user_input
+
+    if numbering != 0:
+        average = total_entries / numbering
+        print(
+            f"In total, {numbering} numbers have been entered and the average is {average:.2f}.\n")
+    else:
+        print("The negative number were entered!")
+
+    print("Goodbye!\n")
+
+
+if __name__ == "__main__":
+    main()
